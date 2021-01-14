@@ -1,0 +1,26 @@
+{
+  "name": "news-explorer-api",
+  "version": "1.0.0",
+  "description": "diploma YP",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node app.js",
+    "lint": "eslint  **/*.js"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artknz/news-explorer-api.git"
+  },
+  "author": "Knyazev A.S.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artknz/news-explorer-api/issues"
+  },
+  "homepage": "https://github.com/artknz/news-explorer-api#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
