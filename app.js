@@ -17,8 +17,8 @@ mongoose.connect('mongodb://localhost:27017/diplomadb', {
 const { PORT = 3000 } = process.env;
 
 const allowedCors = [
-  'http://artknz.students.nomoreparties.xyz',
-  'https://artknz.students.nomoreparties.xyz',
+  'http://artknz1.students.nomoreparties.xyz',
+  'https://artknz1.students.nomoreparties.xyz',
   'http://localhost:3000',
 ];
 
