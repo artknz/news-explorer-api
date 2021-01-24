@@ -1,6 +1,7 @@
 const Article = require('../models/article');
 const InternalServerError = require('../errors/internal-server-error');
 const Forbidden = require('../errors/forbiddenError');
+const NotFoundError = require('../errors/not-found-err');
 
 const getArticles = (req, res, next) => {
   Article.find({})
