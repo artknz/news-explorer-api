@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const { errors } = require('celebrate');
+const limiter = require('./middlewares/limits');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
@@ -21,12 +22,7 @@ const { PORT, JWT_SECRET, DB_URL } = require('./configs');
 
 console.log({ PORT, JWT_SECRET, DB_URL });
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-});
-
-app.use(limiter);
+app.use(rateLimit(limiter));
 
 app.use(helmet());
 
@@ -51,10 +47,10 @@ app.use(errorLogger);
 
 app.use(errors());
 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
-
   res.status(err.statusCode).send({ message: statusCode === 500 ? 'На сервере произошла ошибка' : message });
+  next();
 });
 
 app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
