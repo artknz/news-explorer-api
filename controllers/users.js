@@ -1,7 +1,10 @@
-const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 const NotFoundError = require('../errors/not-found-err');
+const BadRequestError = require('../errors/bad-request');
+const Conflict = require('../errors/conflict');
+const Unauthorized = require('../errors/unauthorized');
 
 const getUsersMe = (req, res, next) => {
   const id = req.user._id;
@@ -25,11 +28,13 @@ const createUser = (req, res, next) => {
       password: hash,
       name: req.body.name,
     }))
-    .then((user) => res.status(200).send({ data: {
-      name: user.name,
-      _id: user._id,
-      email: user.email,
-    } }))
+    .then((user) => res.status(200).send({
+      data: {
+        name: user.name,
+        _id: user._id,
+        email: user.email,
+      },
+    }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         return next(new BadRequestError('Некорректные данные'));

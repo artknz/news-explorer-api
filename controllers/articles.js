@@ -11,8 +11,12 @@ const getArticles = (req, res, next) => {
 
 const createArticle = (req, res, next) => {
   const { _id } = req.user;
-  const { keyword, title, text, date, source, link, image } = req.body;
-  Article.create({ keyword, title, text, date, source, link, image, owner: _id })
+  const {
+    keyword, title, text, date, source, link, image,
+  } = req.body;
+  Article.create({
+    keyword, title, text, date, source, link, image, owner: _id,
+  })
     .then((article) => res.status(200).send({ data: article }))
     .catch(() => next(new InternalServerError('Ошибка сервера')));
 };

@@ -49,4 +49,10 @@ const articleSchema = new mongoose.Schema({
   },
 });
 
+articleSchema.methods.toJSON = function deleteOwner() {
+  const article = this.toObject();
+  delete article.owner;
+  return article;
+};
+
 module.exports = mongoose.model('article', articleSchema);

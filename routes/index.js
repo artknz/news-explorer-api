@@ -25,6 +25,6 @@ router.post('/signin', celebrate({
 router.use('/articles', auth, articles);
 router.use('/users', auth, users);
 
-router.use('*', error);
+router.use('*', auth, error);
 
 module.exports = router;
