@@ -4,9 +4,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
 const { errors } = require('celebrate');
-const limiter = require('./middlewares/limits');
+const { limiter } = require('./middlewares/limits');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
@@ -22,13 +21,14 @@ const { PORT, JWT_SECRET, DB_URL } = require('./configs');
 
 console.log({ PORT, JWT_SECRET, DB_URL });
 
-app.use(rateLimit(limiter));
+app.use(limiter);
 
 app.use(helmet());
 
 const allowedCors = [
   'http://artknz1.students.nomoreparties.xyz',
   'https://artknz1.students.nomoreparties.xyz',
+  'http://localhost:3001',
   'http://localhost:3000',
 ];
 
