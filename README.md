@@ -5,6 +5,6 @@
 <br />
 
 ### Технологии
-JSX, CSS, JavaScript, React, API, Node js, MongoDB, express.js
+Node js, MongoDB, express.js
 
 Ссылка - api.artknz1.students.nomoreparties.xyz
